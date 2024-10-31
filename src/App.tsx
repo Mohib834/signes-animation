@@ -14,69 +14,38 @@ export default function App() {
     const sequence = async () => {
       await animatePath(
         pathScope.current,
-        {
-          pathLength: [0, 1],
-        },
-        {
-          duration: 1.3,
-          ease: cubicBezier(0.95, 0.05, 0.25, 0.99),
-        }
+        { pathLength: [0, 1] },
+        { duration: 1.3, ease: cubicBezier(0.95, 0.05, 0.25, 0.99) }
       );
 
       animateCircle(
         circleScope.current,
         { scale: [0, 1] },
-        {
-          ease: cubicBezier(0.175, 0.885, 0.32, 1.275),
-        }
+        { ease: cubicBezier(0.175, 0.885, 0.32, 1.275) }
       );
 
       animateArrow(
         arrowScope.current,
-        {
-          opacity: 1,
-          y: [8, 0],
-        },
-        {
-          duration: 0.35,
-          ease: cubicBezier(0.34, 1.56, 0.64, 1),
-        }
+        { opacity: 1, y: [8, 0] },
+        { duration: 0.35, ease: cubicBezier(0.34, 1.56, 0.64, 1) }
       );
 
       animateLine(
         lineScope.current,
-        {
-          opacity: 1,
-          y: [12, -6, 0],
-        },
-        {
-          duration: 0.4,
-          ease: cubicBezier(0.05, 0, 0.35, 1),
-        }
+        { opacity: 1, y: [12, -6, 0] },
+        { duration: 0.4, ease: cubicBezier(0.05, 0, 0.35, 1) }
       );
 
-      animateMenuText(
+      // Animating menu text opacity first
+      animateMenuText(menuTextScope.current, { opacity: 1 }, { duration: 0.3 });
+
+      await animateMenuText(
         menuTextScope.current,
-        {
-          opacity: 1,
-        },
-        {
-          duration: 0.3,
-        }
+        { opacity: [0, 1], y: [20, -6, 0] },
+        { delay: 0.05, duration: 0.6, ease: cubicBezier(0.05, 0, 0.35, 1) }
       );
 
-      animateMenuText(
-        menuTextScope.current,
-        {
-          opacity: [0, 1],
-          y: [20, -6, 0],
-        },
-        {
-          delay: 0.05,
-          duration: 0.6,
-          ease: cubicBezier(0.05, 0, 0.35, 1),
-        }
-      );
+      animateMainText(mainTextScope.current, { opacity: 1 }, { duration: 0.6 });
     };
 
     sequence();
@@ -84,8 +53,8 @@ export default function App() {
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="min-w-96">
-        <div className="w-36 h-36 relative mx-auto">
+      <div className="min-w-96 mt-[82px]">
+        <div id="menu-container" className="w-36 h-36 relative mx-auto">
           <div className="absolute left-1/2 -top-[45px] -translate-x-1/2">
             <div className="flex flex-col items-center gap-[2px]">
               <div
@@ -129,6 +98,17 @@ export default function App() {
               strokeWidth="19"
             />
           </svg>
+        </div>
+
+        <div className="mt-[19px]">
+          <div ref={mainTextScope} className="text-center opacity-0">
+            <h1 className="text-[27px] font-bold leading-normal">
+              Signes du quotidien
+            </h1>
+            <h2 className="text-[13px] text-[#9c9c9c] uppercase font-bold">
+              Atelier de design graphique
+            </h2>
+          </div>
         </div>
       </div>
     </div>
