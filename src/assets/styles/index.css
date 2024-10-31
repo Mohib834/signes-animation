@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Akkurat';
+    src: url('../../assets/fonts/akkurat-light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Akkurat';
+    src: url('../../assets/fonts/akkurat-bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  body {
+    font-family: 'Akkurat', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
