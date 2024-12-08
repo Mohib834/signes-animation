@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Akkurat';
+    src: url('../../assets/fonts/akkurat-light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Akkurat';
+    src: url('../../assets/fonts/akkurat-bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  body {
+    font-family: 'Akkurat', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .center-absolute {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+  }
+
+  .pulse-animation {
+    @apply
+    relative 
+    before:content-['']
+    before:rounded-full
+    before:w-full
+    before:h-full
+    before:z-[-1]
+    before:absolute
+    before:top-0
+    before:left-0
+    before:bg-[#2f2d2d];
+
+    &::before {
+      animation: pulse-wave 2s infinite cubic-bezier(0.175,0.885,0.32,1.275) 1.4s;
+    }
+  }
+
+
+  @keyframes pulse-wave {
+    0% {
+      opacity:.5;
+    }
+    100% {
+      transform: scale(1.3);
+      opacity: 0;
+    }
+  }
+}
